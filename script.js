@@ -100,20 +100,64 @@ document.addEventListener('DOMContentLoaded', function() {
         // Determine and set the new image source
         valentineImage.src = currentSrc === 'image2.png' ? 'image2.1.png' : 'image2.png';
     }
-    
-    // Attach this function to the "No" button event listener
-    document.getElementById('noButton').addEventListener('mouseover', handleNoButtonMove);
-    document.getElementById('noButton').addEventListener('touchstart', handleNoButtonMove, {passive: true});
 
-    noButton.addEventListener('mouseover', handleNoButtonMove);
-    noButton.addEventListener('touchstart', handleNoButtonMove, {passive: true});
+        // Attach this function to the "No" button event listener
+        document.getElementById('noButton').addEventListener('mouseover', handleNoButtonMove);
+        document.getElementById('noButton').addEventListener('touchstart', handleNoButtonMove, {passive: true});
+
+        noButton.addEventListener('mouseover', handleNoButtonMove);
+        noButton.addEventListener('touchstart', handleNoButtonMove, {passive: true});
+    
+    function startEmojiRain() {
+        const emojiSet = ["❤️", "💕", "💓", "💖", "💗", "💛", "🥰", "💘", "💞"];
+        let emojiSize = 40; // Starting size of emojis
+        let creationInterval = 25; // Interval for creating new emojis
+    
+        const emojiRainInterval = setInterval(function() {
+            for (let i = 0; i < 2; i++) { // Spawn two emojis
+                const emoji = document.createElement('div');
+                emoji.innerHTML = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+                emoji.style.position = 'fixed';
+    
+                // Adjust the left position to account for increasing emoji size
+                const emojiLeft = Math.random() * (window.innerWidth - emojiSize);
+                emoji.style.left = `${emojiLeft}px`; 
+    
+                emoji.style.top = `-${emojiSize}px`; // Start just above the window frame
+                emoji.style.fontSize = `${emojiSize}px`;
+                document.body.appendChild(emoji);
+    
+                // Animate emoji falling with increased speed
+                let posY = -emojiSize;
+                const fallSpeed = 25; // Increased falling speed
+                const fallInterval = setInterval(function() {
+                    posY += fallSpeed;
+                    emoji.style.top = `${posY}px`;
+    
+                    if (posY > window.innerHeight) {
+                        clearInterval(fallInterval);
+                        emoji.remove();
+                    }
+                }, 50);
+            }
+    
+            // Gradually increase size
+            emojiSize += 1;
+    
+        }, creationInterval);
+    
+        // Stop creating new emojis and redirect after 5 seconds
+        setTimeout(function() {
+            clearInterval(emojiRainInterval);
+            window.location.href = 'itinerary.html'; // Redirect URL
+        }, 3000); // Time before redirecting
+    }
 
     document.getElementById('yesButton').addEventListener('click', function() {
         // Change image to IMAGE3
         document.getElementById('valentineImage').src = 'image3.png';
-        // Redirect after a delay
-        setTimeout(function() {
-            window.location.href = 'nextpage.html'; // The URL to redirect to
-        }, 2000); // Delay in milliseconds
+    
+        // Start the emoji rain effect after a delay
+        setTimeout(startEmojiRain, 500); // Start 2 seconds after clicking "Yes"
     });
 });

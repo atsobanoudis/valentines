@@ -79,7 +79,7 @@ button {
 .itinerary-container h2 {
     top: 26%;
     font-family: 'Comic Neue', sans-serif;
-    font-size: 24px;
+    font-size: 28px;
     margin-top: 0;
 }
 
@@ -95,33 +95,39 @@ button {
     width: 75%; /* Match this with your .item width for consistency */
     position: fixed; /* Make the container fixed to start from a specific point */
     top: 35%; /* Start from the vertical center of the screen */
-    left: 50%;
     transform: translate(-50%, 0); /* Center it horizontally */
     overflow-y: auto; /* Allows scrolling within the container if it extends beyond the viewport height */
     max-height: 50%; /* Adjust this value based on your needs */
+    padding: 10px; /* Padding around the content */
+    border: 1px solid #FFFFFF; /* White border */
+    background-color: rgba(255, 255, 255, 0.5); /* White background with 20% opacity */
+    box-sizing: border-box; /* Ensures padding is included in the width/height */
+    border-radius: 15px;
 }
 
 .item {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    width: 75%; /* Adjust based on your preference */
+    width: 99%; /* Adjust based on your preference */
     position: relative;
     max-width: 100%;
 }
 
 .place, .time {
     white-space: nowrap; /* Ensures content stays in one row */
+    font-size: 26px;
 }
 
 .dots {
     overflow: hidden;
     white-space: nowrap;
+    font-size: 20px;
 }
 
 .dots::after {
-    content: '.......................................................................................................................';
+    content: '.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................';
     display: inline-block;
-    width: 98%;
+    width: 99%;
     overflow: hidden;
 }

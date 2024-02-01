@@ -34,5 +34,25 @@ button {
     padding: 10px;
     font-size: 20px; /* Change the font size as needed */
     font-family: 'Comic Neue', cursive; /* Example font - Comic Neue */
+    font-weight: bold;
     cursor: pointer;
+}
+/* Style for the "No" button */
+#noButton {
+    background-color: #f45b69; /* Background color for "No" button */
+    color: #4d2419; /* Text color */
+    border-radius: 10px; /* Slight roundness of corners */
+}
+
+/* Style for the "Yes" button */
+#yesButton {
+    background-color: #84e6f8; /* Background color for "Yes" button */
+    color: #4d2419; /* Text color */
+    border-radius: 10px; /* Slight roundness of corners */
+}
+
+/* Style for the "Will you be my valentine?" text */
+#content p {
+    color: #4d2419; /* Color of the text */
+    /* Other styles (font, size, etc.) remain unchanged */
 }

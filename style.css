@@ -13,6 +13,7 @@ body, html {
     align-items: center;
     font-family: Arial, sans-serif;
     background-color: #EFF48A; /* New background color */
+    z-index: 1;
 }
 
 #content {

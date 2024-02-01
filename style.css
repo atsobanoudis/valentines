@@ -56,3 +56,32 @@ button {
     color: #4d2419; /* Color of the text */
     /* Other styles (font, size, etc.) remain unchanged */
 }
+
+.itinerary-container h1 {
+    font-family: 'Groovy', cursive; /* Replace 'Groovy' with the actual font name */
+    font-weight: bold;
+    text-align: center;
+    font-size: 48px;
+}
+
+.itinerary-container h2 {
+    font-family: 'Calm', sans-serif; /* Replace 'Calm' with the actual font name */
+    text-align: center;
+    font-size: 24px;
+}
+
+.itinerary p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.place, .time {
+    flex-basis: 40%; /* Adjust based on your preference */
+}
+
+.dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted #000;
+    margin: 0 10px;
+}

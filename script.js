@@ -46,19 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleNoButtonMove(event) {
         const noButton = event.target;
         const margin = 38; // Margin in pixels for 1 cm
-        const minMovePercentage = 0.15; // Minimum movement as a percentage of the screen's max distance
-        const maxMoveX = window.innerWidth - noButton.offsetWidth - margin * 2;
-        const maxMoveY = window.innerHeight - noButton.offsetHeight - margin * 2;
-        const minMoveX = maxMoveX * minMovePercentage;
-        const minMoveY = maxMoveY * minMovePercentage;
-
-        // Ensure the new position is within the viewport
-        const newX = Math.min(window.innerWidth - noButton.offsetWidth - margin, margin + minMoveX + Math.random() * (maxMoveX - minMoveX));
-        const newY = Math.min(window.innerHeight - noButton.offsetHeight - margin, margin + minMoveY + Math.random() * (maxMoveY - minMoveY));
-
-        noButton.style.position = 'absolute';
-        noButton.style.left = `${newX}px`;
-        noButton.style.top = `${newY}px`;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const buttonWidth = noButton.offsetWidth;
+        const buttonHeight = noButton.offsetHeight;
+    
+        // Calculate maximum x and y positions
+        const maxX = viewportWidth - buttonWidth - margin;
+        const maxY = viewportHeight - buttonHeight - margin;
+    
+        // Randomly choose a new position within the constraints
+        const newX = Math.random() * maxX + margin;
+        const newY = Math.random() * maxY + margin;
+    
+        noButton.style.position = 'fixed'; // Use 'fixed' instead of 'absolute'
+        noButton.style.left = `${Math.max(0, newX)}px`;
+        noButton.style.top = `${Math.max(0, Math.min(newY, maxY))}px`; // Ensure newY does not exceed maxY
     
         // Get the current image source
         const valentineImage = document.getElementById('valentineImage');

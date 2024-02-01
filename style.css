@@ -1,0 +1,38 @@
+/* Import the font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #EFF48A; /* New background color */
+}
+
+#content {
+    text-align: center;
+    font-family: 'Comic Neue', cursive; /* Comic Neue font */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Capitalize all letters */
+    font-size: 50px; /* Increase the font size */
+    /* Add any additional styling as needed */
+}
+
+#buttons {
+    position: relative; /* Ensures container doesn't change size */
+    margin-top: 20px;
+}
+
+button {
+    position: relative; /* Keeps buttons in place */
+    margin: 0 10px;
+    padding: 10px;
+    font-size: 20px; /* Change the font size as needed */
+    font-family: 'Comic Neue', cursive; /* Example font - Comic Neue */
+    cursor: pointer;
+}

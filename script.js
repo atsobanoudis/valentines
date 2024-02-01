@@ -1,16 +1,46 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    const emojiSet = ["❤️", "💕", "💓", "💖", "💗", "💛", "🥰", "💘", "💞"];
-    let lastX = -10;
-    let lastY = -10;
+    const emojiSet = ["❤️", "💕", "💓", "💖", "💗", "💛", "🥰", "💘", "💞", "🥒"];
+    let lastX = null;
+    let lastY = null;
+    let lastTime = Date.now();
+    const emojiSpacing = 30; // Fixed distance between emojis
+    const timeThreshold = 100; // Time threshold in milliseconds
 
-    document.addEventListener('mousemove', function(event) {
-        const distance = Math.sqrt(Math.pow(event.clientX - lastX, 2) + Math.pow(event.clientY - lastY, 2));
-        if (distance > 5) {
+    document.body.addEventListener('mousemove', function(event) {
+        const currentTime = Date.now();
+        if (lastX === null || lastY === null) {
             lastX = event.clientX;
             lastY = event.clientY;
-            spawnEmoji(event.clientX, event.clientY);
+            lastTime = currentTime;
+            spawnEmoji(lastX, lastY);
+            return;
         }
+
+        const distance = Math.sqrt(Math.pow(event.clientX - lastX, 2) + Math.pow(event.clientY - lastY, 2));
+        
+        if (distance >= emojiSpacing || currentTime - lastTime > timeThreshold) {
+            const numEmojis = Math.max(Math.floor(distance / emojiSpacing), 1);
+
+            for (let i = 1; i <= numEmojis; i++) {
+                const ratio = i / numEmojis;
+                const intermediateX = lastX + (event.clientX - lastX) * ratio;
+                const intermediateY = lastY + (event.clientY - lastY) * ratio;
+
+                spawnEmoji(intermediateX, intermediateY);
+            }
+
+            lastX = event.clientX;
+            lastY = event.clientY;
+            lastTime = currentTime;
+        }
+    });
+
+    document.body.addEventListener('mouseleave', function() {
+        // Reset the last position and time when the cursor leaves the window
+        lastX = null;
+        lastY = null;
+        lastTime = Date.now();
     });
 
     function spawnEmoji(x, y) {

@@ -38,7 +38,7 @@ function initializeEmojiRain() {
         // Mark this column as spawned
         spawnedColumns.add(randomColumnIndex);
 
-        setTimeout(spawnEmojiInRandomColumn, 300); // Adjust timing for continuous spawning
+        setTimeout(spawnEmojiInRandomColumn, 200); // Adjust timing for continuous spawning
     }
 
     spawnEmojiInRandomColumn();
@@ -65,7 +65,7 @@ function createEmoji(leftPosition, topPosition) {
 
 function animateEmojiFall(emoji) {
     let posY = parseInt(emoji.style.top, 10);
-    const fallSpeed = 4; // Adjust fall speed as needed
+    const fallSpeed = 2; // Adjust fall speed as needed
 
     function fall() {
         posY += fallSpeed;

@@ -1,4 +1,4 @@
-const emojiSet = ["❤️", "💕", "💓", "💖", "💗", "💛", "🥰", "💘", "💞"];
+const emojiSet = ["❤️", "💕", "💓", "💖", "💗", "💛", "🥰", "💘", "💞", "🥒"];
 const emojiBaseSize = 100; // Updated base size of emojis
 
 function initializeEmojiRain() {
@@ -12,27 +12,42 @@ function initializeEmojiRain() {
 
     const leftOffset = (screenWidth - (numberOfColumns * columnWidth)) / 2;
 
-    // Initial vertical population
-    for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
-        const columnLeft = leftOffset + columnIndex * columnWidth;
-        const emojisInColumn = Math.floor(screenHeight / emojiBaseSize) + 1;
+    // Track which columns have spawned an emoji
+    const spawnedColumns = new Set();
 
-        for (let i = 0; i < emojisInColumn; i++) {
-            createEmoji(columnLeft, -i * emojiBaseSize, true); // True for initial placement
+    // Continuous spawning
+    let currentColumnIndex = -1; // Initialize as -1 to select a random column first
+
+    function spawnEmojiInRandomColumn() {
+        // If all columns have spawned an emoji, reset the set
+        if (spawnedColumns.size === numberOfColumns) {
+            spawnedColumns.clear();
         }
 
-        // Continuous spawning
-        (function spawnEmojiInColumn() {
-            createEmoji(columnLeft, -emojiBaseSize);
-            setTimeout(spawnEmojiInColumn, 3000); // Adjust timing for continuous spawning
-        })();
+        let randomColumnIndex;
+
+        do {
+            randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
+        } while (spawnedColumns.has(randomColumnIndex)); // Ensure the column hasn't already spawned an emoji
+
+        const columnLeft = leftOffset + randomColumnIndex * columnWidth;
+
+        // Create emojis above the window in the randomly selected column
+        createEmoji(columnLeft, -2 * emojiBaseSize);
+
+        // Mark this column as spawned
+        spawnedColumns.add(randomColumnIndex);
+
+        setTimeout(spawnEmojiInRandomColumn, 300); // Adjust timing for continuous spawning
     }
+
+    spawnEmojiInRandomColumn();
 }
 
-function createEmoji(leftPosition, topPosition, initial = false) {
+function createEmoji(leftPosition, topPosition) {
     const emoji = document.createElement('div');
     emoji.innerHTML = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-    const rotation = Math.random() * 60 + 60;
+    const rotation = Math.random() * 120 - 60;
 
     Object.assign(emoji.style, {
         position: 'fixed',
@@ -41,17 +56,16 @@ function createEmoji(leftPosition, topPosition, initial = false) {
         transform: `rotate(${rotation}deg)`,
         fontSize: `${emojiBaseSize}px`,
         opacity: '0.5',
-        zIndex: initial ? '-2' : '-1' // Ensure initial emojis are further back
+        zIndex: '-1' // Ensure emojis are behind other elements
     });
 
     document.body.appendChild(emoji);
-
-    if (!initial) animateEmojiFall(emoji);
+    animateEmojiFall(emoji);
 }
 
 function animateEmojiFall(emoji) {
     let posY = parseInt(emoji.style.top, 10);
-    const fallSpeed = 2; // Adjust fall speed as needed
+    const fallSpeed = 4; // Adjust fall speed as needed
 
     function fall() {
         posY += fallSpeed;

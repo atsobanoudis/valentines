@@ -1,6 +1,7 @@
 /* Import the font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 body, html {
     height: 100%;
@@ -79,7 +80,7 @@ button {
 
 .itinerary-container h2 {
     top: 24%;
-    font-family: 'Comic Neue', sans-serif;
+    font-family: 'Roboto Mono';
     font-size: 28px;
     margin-top: 0;
 }
@@ -91,6 +92,7 @@ button {
 .itinerary {
     display: flex;
     color: #4d2419;
+    font-family: 'Roboto Mono';
     flex-direction: column;
     align-items: center;
     width: 75%; /* Match this with your .item width for consistency */
@@ -99,9 +101,9 @@ button {
     transform: translate(-50%, 0); /* Center it horizontally */
     overflow-y: auto; /* Allows scrolling within the container if it extends beyond the viewport height */
     max-height: 50%; /* Adjust this value based on your needs */
-    padding-left: 20px; /* Padding around the content */
-    padding-top: 20px;
-    padding-right: 20px;
+    padding-left: 10px; /* Padding around the content */
+    padding-top: 10px;
+    padding-right: 10px;
     border: 1px solid #FFFFFF; /* White border */
     background-color: rgba(255, 255, 255, 0.5); /* White background with 20% opacity */
     box-sizing: border-box; /* Ensures padding is included in the width/height */
@@ -115,7 +117,7 @@ button {
     width: 99%; /* Adjust based on your preference */
     position: relative;
     max-width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .place, .time {

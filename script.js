@@ -7,6 +7,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const emojiSpacing = 30; // Fixed distance between emojis
     const timeThreshold = 100; // Time threshold in milliseconds
 
+    // Define the image URLs to preload
+    const imageUrls = ['image1.png', 'image2.png', 'image2.1.png', 'image3.png'];
+
+    // Preload images
+    preloadImages(imageUrls);
+
+    // Preload images function
+    function preloadImages(urls) {
+        urls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+    }
+
     document.body.addEventListener('mousemove', function(event) {
         const currentTime = Date.now();
         if (lastX === null || lastY === null) {

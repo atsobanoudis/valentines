@@ -1,11 +1,11 @@
 const emojiSet = ["❤️", "💕", "💓", "💖", "💗", "💛", "🥰", "💘", "💞", "🥒"];
-const emojiBaseSize = 100; // Updated base size of emojis
+const emojiBaseSize = 100;
 
 function initializeEmojiRain() {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     const columnWidth = emojiBaseSize * 1.5;
-    let numberOfColumns = Math.floor(screenWidth / columnWidth) + 4; // Ensure coverage with extra columns
+    let numberOfColumns = Math.floor(screenWidth / columnWidth) + 4;
 
     // Adjust for an odd number of columns to center properly
     if (numberOfColumns % 2 === 0) numberOfColumns++;
@@ -65,7 +65,7 @@ function createEmoji(leftPosition, topPosition) {
 
 function animateEmojiFall(emoji) {
     let posY = parseInt(emoji.style.top, 10);
-    const fallSpeed = 2; // Adjust fall speed as needed
+    const fallSpeed = 2;
 
     function fall() {
         posY += fallSpeed;
